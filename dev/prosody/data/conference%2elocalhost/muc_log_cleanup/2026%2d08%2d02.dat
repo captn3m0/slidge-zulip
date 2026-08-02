@@ -1,0 +1,4 @@
+return {
+	["bridgetest2"] = true;
+	["bridgetest"] = true;
+};

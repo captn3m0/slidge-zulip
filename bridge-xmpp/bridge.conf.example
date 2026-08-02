@@ -1,0 +1,40 @@
+; Zulip <-> XMPP bridge configuration.
+;
+; XMPP is the hub: native XMPP users talk in one MUC, and Slidge exposes Signal and
+; Telegram groups on their own gateway domains. This bridge joins all of them and maps
+; them to the same Zulip stream/topic.
+
+[xmpp]
+; The bridge's own XMPP account.
+jid = bridge@localhost
+password = bridgepass
+nick = zulip
+host = 127.0.0.1
+port = 5222
+ca_certs = dev/prosody/certs/localhost.crt
+
+; One or more MUCs. For local testing, the first is a native room on the disposable
+; Prosody and the other two show the shape of the rooms Slidge gateways would expose.
+; Replace the localparts with the actual Telegram/Signal chat ids or names your gateways
+; create.
+rooms =
+    general@conference.localhost
+    some-signal-chat@signal.localhost
+    some-telegram-chat@telegram.localhost
+
+[zulip]
+email = bridge-relay-bot@521ab.zulipchat.com
+api_key = CHANGEME
+site = https://521ab.zulipchat.com
+stream = general
+topic = general-chat
+
+[identity]
+; false -> no impersonation; messages relay through the bot with a visible name prefix.
+; true  -> post as real Zulip users, using custom profile fields to resolve identities.
+forge = false
+
+; These must match the labels of your Zulip custom profile fields if you rename them.
+; xmpp_field = XMPP Username
+; telegram_field = Telegram Username
+; signal_field = Signal Username

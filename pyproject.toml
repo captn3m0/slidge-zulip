@@ -1,0 +1,29 @@
+[project]
+name = "slidge-zulip"
+version = "0.1.0"
+description = "Bridge Zulip topics to XMPP rooms exposed by Slidge gateways"
+requires-python = ">=3.11"
+dependencies = [
+    "zulip>=0.9.0",
+    "markdownify>=0.13",
+    "beautifulsoup4>=4.12",
+    "slixmpp>=1.17.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0",
+    "pytest-asyncio>=1.4.0",
+    "ruff>=0.6",
+]
+
+[tool.pytest.ini_options]
+pythonpath = [".", "bridge-xmpp"]
+testpaths = ["tests"]
+markers = ["integration: needs a live Prosody (run via dev/with-prosody.sh)"]
+addopts = "-m 'not integration'"
+asyncio_mode = "auto"
+
+[tool.ruff]
+line-length = 100
+target-version = "py311"

@@ -1,0 +1,7 @@
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+dev/prosody/prosody.log
+dev/prosody/prosody.generated.cfg.lua
+dev/prosody/prosody.pid
