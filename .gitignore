@@ -5,3 +5,5 @@ __pycache__/
 dev/prosody/prosody.log
 dev/prosody/prosody.generated.cfg.lua
 dev/prosody/prosody.pid
+dev/prosody/data/**/cron.dat
+dev/prosody/data/**/muc_log_cleanup/
